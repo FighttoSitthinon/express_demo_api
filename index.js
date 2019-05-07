@@ -1,18 +1,10 @@
-const service =  require('./services/search');
-const connect =  require('./db/connect');
+const service =  require('./services/query');
 const express =  require('express');
 const app = express();
 
-
-/*app.get('/', (req, res) => {
-    service.getAll().then(result =>{
-        res.send(result);
-    });
-});*/
-
-
 app.get('/', async (req, res) => {
-    var result = await service.getAll();
+    let sql = "SELECT * FROM properties LIMIT 10;";
+    var result = await service.query(sql);
     res.send(result);
 });
 
