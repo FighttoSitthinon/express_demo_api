@@ -12,16 +12,24 @@ const router = express.Router();
 */
 
 router.get('/:row', async (req, res) => {
-    let sql = "SELECT * FROM properties LIMIT "+req.params.row;
-    console.log(sql);
-    var result = await func.query(sql);
-    res.send(result);
+    try{
+        let sql = "SELECT * FROM properties LIMIT "+req.params.row;
+        console.log(sql);
+        var result = await func.query(sql);
+        res.send(result);
+    }catch(err){
+        res.send({error: err});
+    }
 });
 
 router.get('/query/', async (req, res) => {
-    let sql = await func.genSQL(req.query); 
-    var result = await func.query(sql);
-    res.send(result);
+    try{
+        let sql = await func.genSQL(req.query); 
+        var result = await func.query(sql);
+        res.send(result);
+    }catch(err){
+        res.send({error: err});
+    }
 });
 
 module.exports = router;
