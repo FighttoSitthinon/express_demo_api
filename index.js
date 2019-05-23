@@ -1,13 +1,12 @@
 const express =  require('express');
-const func =  require('./function/query');
 const app = express();
 
 const queries = require('./routes/query');
 
-app.use('/', queries);
+app.use('/queries/', queries);
 
 app.get('/', (req, res) => {
-    res.send('Hello');
+    res.send('Hello this is RESTful APIs by ExpressJS <br>1) BaseURL/queries/{:row}<br>2) BaseURL/queries/{Criteria}');
 });
 //PORT
 const port = process.env.PORT || 3000;

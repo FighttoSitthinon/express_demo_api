@@ -11,9 +11,9 @@ const router = express.Router();
     Search by Location & radius
 */
 
-router.get('/:row', async (req, res) => {
+router.get('/:rowID', async (req, res) => {
     try{
-        let sql = "SELECT * FROM properties LIMIT "+req.params.row;
+        let sql = "SELECT * FROM properties LIMIT "+req.params.rowID;
         console.log(sql);
         var result = await func.query(sql);
         res.send(result);
@@ -22,7 +22,7 @@ router.get('/:row', async (req, res) => {
     }
 });
 
-router.get('/query/', async (req, res) => {
+router.get('/', async (req, res) => {
     try{
         let sql = await func.genSQL(req.query); 
         var result = await func.query(sql);
